@@ -260,7 +260,6 @@ p { color: var(--text-muted); }
 .logo-img-footer {
   height: 100px;
   max-width: 240px;
-  filter: brightness(1.05);
 }
 
 .logo-footer {
@@ -1780,19 +1779,54 @@ p { color: var(--text-muted); }
 .footer {
   background: var(--text);
   color: rgba(255, 255, 255, 0.85);
-  padding: 3.5rem 0 0;
+  padding: 2.25rem 0 0;
   margin-top: 0;
+}
+
+@media (min-width: 576px) {
+  .footer { padding-top: 3.5rem; }
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
-  padding-bottom: 2.5rem;
+  gap: 1.25rem;
+  padding-bottom: 1.5rem;
 }
 
 @media (min-width: 576px) {
-  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; padding-bottom: 2.5rem; }
+}
+
+.footer-links-row {
+  display: contents;
+}
+
+@media (max-width: 575.98px) {
+  .footer-links-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1.25rem;
+  }
+
+  .footer-brand,
+  .footer-contact-col,
+  .footer-links-row {
+    text-align: center;
+  }
+
+  .footer-brand .logo {
+    display: inline-flex;
+  }
+
+  .footer-brand .logo-img-footer {
+    height: 130px;
+  }
+
+  .footer-contact-col .footer-contact li {
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 @media (min-width: 992px) {
@@ -1801,27 +1835,27 @@ p { color: var(--text-muted); }
 
 .footer-brand .logo {
   color: #fff;
-  margin-bottom: 1rem;
-}
-
-.footer-brand .logo-img-footer {
-  filter: brightness(1.15);
+  margin-bottom: 0.75rem;
 }
 
 .footer-brand p {
   color: rgba(255, 255, 255, 0.65);
   font-size: 0.9rem;
   line-height: 1.65;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .footer h4 {
   color: #fff;
   font-size: 1rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.85rem;
 }
 
-.footer-links li { margin-bottom: 0.6rem; }
+@media (min-width: 576px) {
+  .footer h4 { margin-bottom: 1.25rem; }
+}
+
+.footer-links li { margin-bottom: 0.5rem; }
 
 .footer-links a {
   color: rgba(255, 255, 255, 0.65);
@@ -1835,14 +1869,14 @@ p { color: var(--text-muted); }
   display: flex;
   align-items: flex-start;
   gap: 0.6rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.65);
 }
 
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1.25rem 0;
+  padding: 1rem 0;
   text-align: center;
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.45);
