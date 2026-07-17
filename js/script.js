@@ -220,11 +220,14 @@
     const widget = $('#booking-calendar');
     if (!widget) return;
 
+    const trigger = $('#date-trigger');
+
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     selectedDate = new Date(today);
 
     renderCalendar(widget);
+    updateTriggerText();
 
     $('#cal-prev', widget)?.addEventListener('click', () => {
       calendarMonth--;
@@ -243,6 +246,49 @@
       }
       renderCalendar(widget);
     });
+
+    trigger?.addEventListener('click', () => {
+      if (widget.hidden) {
+        openCalendarPopup();
+      } else {
+        closeCalendarPopup();
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (widget.hidden) return;
+      if (widget.contains(e.target) || trigger?.contains(e.target)) return;
+      closeCalendarPopup();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !widget.hidden) closeCalendarPopup();
+    });
+  }
+
+  function openCalendarPopup() {
+    const widget = $('#booking-calendar');
+    const trigger = $('#date-trigger');
+    if (!widget || !trigger) return;
+    widget.hidden = false;
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeCalendarPopup() {
+    const widget = $('#booking-calendar');
+    const trigger = $('#date-trigger');
+    if (!widget || !trigger) return;
+    widget.hidden = true;
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+
+  function updateTriggerText() {
+    const trigger = $('#date-trigger');
+    const label = $('#date-trigger-text');
+    if (!trigger || !label || !selectedDate) return;
+    const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    label.textContent = selectedDate.toLocaleDateString('en-GB', options);
+    trigger.classList.add('has-value');
   }
 
   function renderCalendar(widget) {
@@ -302,7 +348,9 @@
         selectedDate = date;
         renderCalendar(widget);
         updateSelectedLabel(selectedLabel);
+        updateTriggerText();
         clearCalendarError();
+        closeCalendarPopup();
       });
 
       daysContainer.appendChild(btn);

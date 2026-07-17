@@ -88,7 +88,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section-contact">
       <div class="container">
         <div class="contact-grid">
           <div class="contact-info-card animate-on-scroll">
@@ -157,9 +157,13 @@
                 </div>
               </div>
 
-              <div class="form-group">
-                <label>Select a Date</label>
-                <div class="calendar-widget" id="booking-calendar">
+              <div class="form-group calendar-field">
+                <label for="date-trigger">Select a Date</label>
+                <button type="button" class="calendar-trigger" id="date-trigger" aria-haspopup="dialog" aria-expanded="false">
+                  <span id="date-trigger-text">Choose a date</span>
+                  <span class="calendar-trigger-icon" aria-hidden="true">📅</span>
+                </button>
+                <div class="calendar-widget calendar-popup" id="booking-calendar" role="dialog" aria-label="Select a date" hidden>
                   <div class="calendar-header">
                     <h4 id="calendar-month">June 2026</h4>
                     <div class="calendar-nav">
@@ -210,8 +214,8 @@
                 <textarea id="book-notes" name="notes" placeholder="Hotel/villa name, children's ages, preferred hours..."></textarea>
               </div>
 
-              <button type="submit" class="btn btn-whatsapp" style="width:100%;font-size:1rem;padding:1rem;">💬 Book on WhatsApp</button>
-              <p style="font-size:0.8rem;color:var(--text-muted);margin-top:0.75rem;text-align:center;">* Clicking this will copy your details and open WhatsApp. Just paste and send!</p>
+              <button type="submit" class="btn btn-whatsapp" style="width:100%;font-size:1rem;padding:0.85rem;">💬 Book on WhatsApp</button>
+              <p style="font-size:0.8rem;color:var(--text-muted);margin-top:0.5rem;text-align:center;">* Clicking this will copy your details and open WhatsApp. Just paste and send!</p>
             </form>
           </div>
         </div>
