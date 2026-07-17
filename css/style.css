@@ -697,6 +697,36 @@ p { color: var(--text-muted); }
   .hero-cloud-3 { display: none; }
 }
 
+.hero-baby-mascot {
+  display: block;
+  position: absolute;
+  bottom: 17%;
+  width: clamp(60px, 16vw, 85px);
+  height: auto;
+  animation: heroItemFloat 7s ease-in-out infinite;
+  filter: drop-shadow(0 10px 16px rgba(44, 51, 56, 0.18));
+}
+
+.hero-baby-mascot-right {
+  right: 3%;
+  animation-delay: 1.2s;
+}
+
+.hero-baby-mascot-left {
+  left: 3%;
+  animation-delay: 3.6s;
+}
+
+@media (min-width: 576px) {
+  .hero-baby-mascot {
+    bottom: 6%;
+    width: clamp(100px, 12vw, 170px);
+  }
+
+  .hero-baby-mascot-right { right: 4%; }
+  .hero-baby-mascot-left { left: 4%; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-gradient-slide {
     animation: none;
@@ -887,6 +917,11 @@ p { color: var(--text-muted); }
 .service-icon-wrap svg {
   width: 26px;
   height: 26px;
+}
+
+.service-icon-emoji {
+  font-size: 28px;
+  line-height: 1;
 }
 
 .service-icon-pink {
