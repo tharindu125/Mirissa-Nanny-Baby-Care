@@ -24,7 +24,7 @@
   --radius-lg: 24px;
   --radius-pill: 999px;
   --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  --header-height: 80px;
+  --header-height: 70px;
   --font-heading: 'DM Sans', 'Poppins', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
@@ -711,7 +711,7 @@ p { color: var(--text-muted); }
 /* --- Page Hero --- */
 .page-hero {
   position: relative;
-  min-height: 340px;
+  min-height: 560px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -719,6 +719,14 @@ p { color: var(--text-muted); }
   background-position: center;
   margin-top: var(--header-height);
   overflow: hidden;
+}
+
+.page-about .page-hero {
+  background-position: center 38%;
+}
+
+.page-contact .page-hero {
+  background-position: center 38%;
 }
 
 .page-hero::before {
