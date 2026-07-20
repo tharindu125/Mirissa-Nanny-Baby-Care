@@ -195,6 +195,67 @@
     });
   }
 
+  /* --- Gallery Slider --- */
+  function initGallerySlider() {
+    const slider = $('.gallery-slider');
+    if (!slider) return;
+
+    const track = $('.gallery-slider-track', slider);
+    const prevBtn = $('.gallery-slider-prev', slider);
+    const nextBtn = $('.gallery-slider-next', slider);
+    const slide = $('.gallery-slide', track);
+    if (!track || !slide) return;
+
+    const AUTOPLAY_DELAY = 3500;
+    let autoplayTimer = null;
+
+    function step() {
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      return slide.offsetWidth + gap;
+    }
+
+    function atEnd() {
+      return track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+    }
+
+    function scrollByAmount(dir) {
+      if (dir > 0 && atEnd()) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: dir * step(), behavior: 'smooth' });
+      }
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      autoplayTimer = setInterval(() => scrollByAmount(1), AUTOPLAY_DELAY);
+    }
+
+    function stopAutoplay() {
+      if (autoplayTimer) clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    }
+
+    function restartAutoplay() {
+      stopAutoplay();
+      startAutoplay();
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => { scrollByAmount(-1); restartAutoplay(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { scrollByAmount(1); restartAutoplay(); });
+
+    slider.addEventListener('mouseenter', stopAutoplay);
+    slider.addEventListener('mouseleave', startAutoplay);
+    slider.addEventListener('touchstart', stopAutoplay, { passive: true });
+    slider.addEventListener('touchend', startAutoplay);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopAutoplay();
+      else startAutoplay();
+    });
+
+    startAutoplay();
+  }
+
   /* --- FAQ Accordion --- */
   function initFAQ() {
     $$('.faq-question').forEach(btn => {
@@ -597,6 +658,7 @@ Please confirm availability. Thank you!`;
     initBackToTop();
     initSmoothScroll();
     initLightbox();
+    initGallerySlider();
     initFAQ();
     initCalendar();
     initBookingForm();
